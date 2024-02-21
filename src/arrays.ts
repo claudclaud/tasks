@@ -5,15 +5,18 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    return numbers.length === 0
+        ? []
+        : numbers.length === 1
+        ? [numbers[0], numbers[0]]
+        : [numbers[0], numbers[numbers.length - 1]];
 }
-
 /**
  * Consume an array of numbers, and return a new array where each
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    return numbers.map((num) => num * 3);
 }
 
 /**
@@ -21,7 +24,7 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    return numbers.map((str) => parseInt(str) || 0);
 }
 
 /**
@@ -31,25 +34,27 @@ export function stringsToIntegers(numbers: string[]): number[] {
  * convert it to 0 instead.
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
-export const removeDollars = (amounts: string[]): number[] => {
-    return [];
-};
+export const removeDollars = (amounts: string[]): number[] =>
+    amounts.map((amount) => parseInt(amount.replace("$", "")) || 0);
 
 /**
  * Consume an array of messages and return a new list of the messages. However, any
  * string that ends in "!" should be made uppercase. Also, remove any strings that end
  * in question marks ("?").
  */
-export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
-};
+export const shoutIfExclaiming = (messages: string[]): string[] =>
+    messages
+        .map((message) =>
+            message.endsWith("!") ? message.toUpperCase() : message
+        )
+        .filter((message) => !message.endsWith("?"));
 
 /**
  * Consumes an array of words and returns the number of words that are LESS THAN
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    return words.filter((word) => word.length < 4).length;
 }
 
 /**
@@ -58,7 +63,7 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    return colors.every((color) => ["red", "blue", "green"].includes(color));
 }
 
 /**
@@ -69,7 +74,8 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    const sum = addends.reduce((acc, num) => acc + num, 0);
+    return `${sum}=${addends.join("+")}`;
 }
 
 /**
@@ -82,5 +88,16 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    let sum = 0;
+    let injected = false;
+    return values
+        .map((num) => {
+            if (num < 0 && !injected) {
+                injected = true;
+                sum += num;
+                return sum;
+            }
+            return num;
+        })
+        .concat(injected ? [] : [sum]);
 }
