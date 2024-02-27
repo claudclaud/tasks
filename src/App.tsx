@@ -1,52 +1,18 @@
 import React from "react";
 import "./App.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
 
-function header(): JSX.Element {
+function App(): JSX.Element {
     return (
-        <div>
-            <h1>
-                {" "}
-                <div
-                    style={{
-                        backgroundColor: "red"
-                    }}
-                ></div>
-                My Cats & Other Cats
-            </h1>
+        <div className="App">
+            <header className="App-header">
+                UD CISC275 with React Hooks and TypeScript
+            </header>
             <p>
-                Basically, my cats names and other cat names I want to name
-                future cats of mine! :)
+                Edit <code>src/App.tsx</code> and save. This page will
+                automatically reload.
             </p>
-
-            <Container>
-                <Row>
-                    <Col>
-                        {" "}
-                        My Cats:
-                        <ul>
-                            <li>Moshi: 5 years old</li>
-                            <li>Boba: 2 years old</li>
-                            <li>Boo: Old cat, was 14!</li>
-                        </ul>
-                    </Col>
-                    <Col>
-                        {" "}
-                        Cat Names I Like:
-                        <ul>
-                            <li>Tchotchke (meaning: sentimental)</li>
-                            <li>Goliath (meaning: large)</li>
-                            <li>Chutz (short for Chutzpah)</li>
-                        </ul>
-                    </Col>
-                </Row>
-            </Container>
-
-            <Button onClick={() => console.log("Hello World!")}>
-                Click Me!
-            </Button>
         </div>
     );
 }
 
-export default header;
+export default App;
