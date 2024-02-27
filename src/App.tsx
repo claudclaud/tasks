@@ -1,52 +1,52 @@
 import React from "react";
 import "./App.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import kitty from "./image/360_F_274256881_WSeCn3Iw8yFIU8T6z71aDjXHfAdtc5iy.jpg";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
-function header(): JSX.Element {
+function App(): JSX.Element {
     return (
-        <div>
-            <h1>
-                {" "}
-                <div
-                    style={{
-                        backgroundColor: "red"
-                    }}
-                ></div>
-                My Cats & Other Cats
-            </h1>
-            <p>
-                Basically, my cats names and other cat names I want to name
-                future cats of mine! :)
-            </p>
-
+        <div className="App">
+            <header className="App-header">
+                UD CISC275 with React Hooks and TypeScript
+            </header>
+            <h2>Another Header</h2>;<p>A paragraph.</p>
+            List Some Stuff
+            {/* <ul>
+                <li>just</li>
+                <li>some</li>
+                <li>stuff</li>
+            </ul> */}
+            <ol>
+                <li>this one is gonna be ordered</li>
+                <li>my favorite yiddish word: tchotchke</li>
+                <li>third is a charm</li>
+            </ol>
+            <img src={kitty} alt="A cat wearing headphones, super cool" />
+            <Button onClick={() => console.log("Hello World!")}>
+                Log Hello World
+            </Button>
             <Container>
                 <Row>
-                    <Col>
-                        {" "}
-                        My Cats:
-                        <ul>
-                            <li>Moshi: 5 years old</li>
-                            <li>Boba: 2 years old</li>
-                            <li>Boo: Old cat, was 14!</li>
-                        </ul>
-                    </Col>
-                    <Col>
-                        {" "}
-                        Cat Names I Like:
-                        <ul>
-                            <li>Tchotchke (meaning: sentimental)</li>
-                            <li>Goliath (meaning: large)</li>
-                            <li>Chutz (short for Chutzpah)</li>
-                        </ul>
-                    </Col>
+                    <Col
+                        style={{
+                            width: "100px",
+                            height: "150px",
+                            backgroundColor: "red",
+                            margin: "5px"
+                        }}
+                    ></Col>
+                    <Col
+                        style={{
+                            width: "100px",
+                            height: "150px",
+                            backgroundColor: "red",
+                            margin: "5px"
+                        }}
+                    ></Col>
                 </Row>
             </Container>
-
-            <Button onClick={() => console.log("Hello World!")}>
-                Click Me!
-            </Button>
         </div>
     );
 }
 
-export default header;
+export default App;
