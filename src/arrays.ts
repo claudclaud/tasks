@@ -8,8 +8,8 @@ export function bookEndList(numbers: number[]): number[] {
     return numbers.length === 0
         ? []
         : numbers.length === 1 // eslint-disable-next-line prettier/prettier
-            ? [numbers[0], numbers[0]] // eslint-disable-next-line prettier/prettier
-            : [numbers[0], numbers[numbers.length - 1]];
+        ? [numbers[0], numbers[0]] // eslint-disable-next-line prettier/prettier
+        : [numbers[0], numbers[numbers.length - 1]];
 }
 /**
  * Consume an array of numbers, and return a new array where each
@@ -75,7 +75,8 @@ export function allRGB(colors: string[]): boolean {
  */
 export function makeMath(addends: number[]): string {
     const sum = addends.reduce((acc, num) => acc + num, 0);
-    return `${sum}=${addends.join("+")}`;
+    const equation = addends.length > 0 ? addends.join("+") : "0";
+    return `${sum}=${equation}`;
 }
 
 /**
@@ -88,16 +89,22 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    let sum = 0;
-    let injected = false;
-    return values
-        .map((num) => {
-            if (num < 0 && !injected) {
-                injected = true;
-                sum += num;
-                return sum;
+    let negative = false;
+    const [finalSum, indNeg] = values.reduce(
+        ([sum, currInd], num, i) => {
+            if (num < 0 && !negative) {
+                negative = true;
+                return [sum, i];
+            } else if (!negative) {
+                return [sum + num, currInd];
+            } else {
+                return [sum, currInd];
             }
-            return num;
-        })
-        .concat(injected ? [] : [sum]);
+        },
+        [0, values.length - 1]
+    );
+
+    const modarray = [...values];
+    modarray.splice(indNeg + 1, 0, Math.abs(finalSum));
+    return modarray;
 }
