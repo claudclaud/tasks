@@ -8,8 +8,8 @@ export function bookEndList(numbers: number[]): number[] {
     return numbers.length === 0
         ? []
         : numbers.length === 1 // eslint-disable-next-line prettier/prettier
-        ? [numbers[0], numbers[0]] // eslint-disable-next-line prettier/prettier
-        : [numbers[0], numbers[numbers.length - 1]];
+            ? [numbers[0], numbers[0]] // eslint-disable-next-line prettier/prettier
+            : [numbers[0], numbers[numbers.length - 1]];
 }
 /**
  * Consume an array of numbers, and return a new array where each
