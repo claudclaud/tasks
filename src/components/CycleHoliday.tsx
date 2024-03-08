@@ -2,7 +2,13 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-type Holiday = "Valentine's Day" | "Hanukkah" | "Passover Seder";
+// Define an enumeration for the holidays
+type Holiday =
+    | "Valentine's Day"
+    | "Hanukkah"
+    | "Passover Seder"
+    | "Halloween"
+    | "Purim";
 
 // Function to get the next holiday alphabetically
 const getNextHolidayAlphabetically = (currentHoliday: Holiday): Holiday => {
@@ -10,14 +16,19 @@ const getNextHolidayAlphabetically = (currentHoliday: Holiday): Holiday => {
     case "Valentine's Day":
         return "Hanukkah";
     case "Hanukkah":
+        return "Halloween";
+    case "Halloween":
         return "Passover Seder";
     case "Passover Seder":
+        return "Purim";
+    case "Purim":
         return "Valentine's Day";
     default:
         return currentHoliday;
     }
 };
 
+// Function to get the next holiday in the year
 const getNextHolidayInYear = (currentHoliday: Holiday): Holiday => {
     switch (currentHoliday) {
     case "Valentine's Day":
@@ -25,6 +36,10 @@ const getNextHolidayInYear = (currentHoliday: Holiday): Holiday => {
     case "Hanukkah":
         return "Passover Seder";
     case "Passover Seder":
+        return "Halloween";
+    case "Halloween":
+        return "Purim";
+    case "Purim":
         return "Valentine's Day";
     default:
         return currentHoliday;
@@ -63,6 +78,10 @@ const getEmojiForHoliday = (holiday: Holiday): string => {
         return "🕎";
     case "Passover Seder":
         return "🍷";
+    case "Halloween":
+        return "🎃";
+    case "Purim":
+        return "🎭";
     default:
         return "";
     }
